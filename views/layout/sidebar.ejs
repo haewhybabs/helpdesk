@@ -1,0 +1,178 @@
+<nav class="pcoded-navbar">
+    <div class="nav-list">
+        <div class="pcoded-inner-navbar main-menu">
+            <div class="pcoded-navigation-label">Navigation</div>
+            <ul class="pcoded-item pcoded-left-item">
+                <li class="">
+                    <a href="/dashboard" class="waves-effect waves-dark">
+                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                        <span class="pcoded-mtext">Dashboard</span>
+                    </a>
+                </li>
+                
+                <!-- Student -->
+                <% if(locals.user.roleID==1) {%>
+        
+                <li class="">
+                    <a href="/complaint" class="waves-effect waves-dark">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-menu"></i>
+                        </span>
+                        <span class="pcoded-mtext">New Complaint</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="/complaint/history" class="waves-effect waves-dark">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-layers"></i>
+                        </span>
+                        <span class="pcoded-mtext">Complaint History</span>
+                        <span class="pcoded-badge label label-danger">100+</span>
+                    </a>
+                </li>
+
+                <li class="">
+                        <a href="/knowledgebase" class="waves-effect waves-dark">
+                            <span class="pcoded-micon">
+                                <i class="feather icon-layers"></i>
+                            </span>
+                            <span class="pcoded-mtext">Knowledge Base</span>
+                            <span class="pcoded-badge label label-danger">100+</span>
+                        </a>
+                    </li>
+            
+                <!-- Facility Head -->
+                <%}else if (locals.user.roleID==2){%>
+
+                    <li class="">
+                        <a href="/complaint" class="waves-effect waves-dark">
+                            <span class="pcoded-micon">
+                                <i class="feather icon-menu"></i>
+                            </span>
+                            <span class="pcoded-mtext">Student Complaints</span>
+                            <span class="pcoded-badge label label-danger">100+</span>
+                        </a>
+                    </li>
+    
+                    <li class="pcoded-hasmenu">
+                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                            <span class="pcoded-micon">
+                                <i class="feather icon-box"></i>
+                            </span>
+                            <span class="pcoded-mtext">Knowledge Base</span>
+                        </a>
+                        <ul class="pcoded-submenu">
+                            <li class="">
+                                <a href="alert.html" class="waves-effect waves-dark">
+                                    <span class="pcoded-mtext">Add Knowledge Base</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="alert.html" class="waves-effect waves-dark">
+                                    <span class="pcoded-mtext">View Knowledge Base</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                <%}
+                
+                
+                 else if (locals.user.roleID==3){%>
+                    <!-- Super Admin -->
+                    <li class="">
+                        <a href="/students" class="waves-effect waves-dark">
+                            <span class="pcoded-micon">
+                                <i class="feather icon-menu"></i>
+                            </span>
+                            <span class="pcoded-mtext">Students</span>
+                            <span class="pcoded-badge label label-danger">100+</span>
+                        </a>
+                    </li>
+
+                    <li class="">
+                        <a href="/facility-head" class="waves-effect waves-dark">
+                            <span class="pcoded-micon">
+                                <i class="feather icon-menu"></i>
+                            </span>
+                            <span class="pcoded-mtext">Facility Head</span>
+                            <span class="pcoded-badge label label-danger">100+</span>
+                        </a>
+                    </li>
+
+                    <li class="pcoded-hasmenu">
+                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                            <span class="pcoded-micon">
+                                <i class="feather icon-box"></i>
+                            </span>
+                            <span class="pcoded-mtext">Knowledge Base</span>
+                        </a>
+                        <ul class="pcoded-submenu">
+                            <li class="">
+                                <a href="alert.html" class="waves-effect waves-dark">
+                                    <span class="pcoded-mtext">Add Knowledge Base</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="alert.html" class="waves-effect waves-dark">
+                                    <span class="pcoded-mtext">View Knowledge Base</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+    
+                    
+                    
+
+                    
+                <%}%>
+
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-box"></i>
+                        </span>
+                        <span class="pcoded-mtext">Account Management</span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class="">
+                            <a href="/changepassword" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Change Password</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="/logout" class="waves-effect waves-dark">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-layers"></i>
+                        </span>
+                        <span class="pcoded-mtext">Logout</span>
+                        <!-- <span class="pcoded-badge label label-danger">100+</span> -->
+                    </a>
+                </li>
+            </ul>
+            
+        </div>
+    </div>
+</nav>
+<div class="pcoded-content">
+        <% if(locals.error.length>0) {%>
+            <div class="alert alert-danger">
+                <%=locals.error %>
+            </div> 
+            <%}
+        else if (locals.success.length>0) {%>
+            <div class="alert alert-success">
+                <%=locals.success %>
+            </div> 
+        <%}%>
+       
+        <%if(errors) {%>
+            <% errors.forEach(function (error){%>
+              <div class="alert alert-danger">
+                <%=error.msg %>
+              </div>
+            <%});%>
+          <% }%>
