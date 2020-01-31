@@ -3,21 +3,17 @@ var keys=require('../config/key');
 mongoose.connect(keys.mongoURI);
 var db = mongoose.connection;
 
-var ComplaintSchema= mongoose.Schema({
-    user_id: {
+var KnowledgebaseSchema= mongoose.Schema({
+    uploaded_by: {
         type: String,
         required:true
 
     },
-    complaint:{
+    knowledge:{
         type: String,
         required:true
     },
-    response:{
-        type:String,
-        required:false
-    },
-    status:{
+    solution:{
         type:String,
         required:true
     },
@@ -29,10 +25,5 @@ var ComplaintSchema= mongoose.Schema({
         type:Date,
         required:false
     },
-
-    status:{
-        type:String,
-        required:false
-    }
 });
-var User = module.exports = mongoose.model('Complaint', ComplaintSchema,'complaint');
+var User = module.exports = mongoose.model('Knowledgebase', KnowledgebaseSchema,'knowledgebase');

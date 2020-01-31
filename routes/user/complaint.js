@@ -24,7 +24,7 @@ router.post('/', ensureAuthenticated,function(req,res){
     var sess=req.user;
 
     var complaint =req.body.complaint;
-    req.checkBody("complaint", "Matric No field is required").notEmpty();
+    req.checkBody("complaint", "Complaint field is required").notEmpty();
     var errors = req.validationErrors();
 
     if (errors) {
@@ -37,7 +37,8 @@ router.post('/', ensureAuthenticated,function(req,res){
     
     var newComplaint =new Complaint({
         complaint:complaint,
-        matric_no:sess.matric_no,
+        user_id:req.user._id,
+        status:"pending",
     });
     newComplaint.save(function(err){
         if (err){
@@ -52,7 +53,7 @@ router.post('/', ensureAuthenticated,function(req,res){
 
 router.get('/history',ensureAuthenticated,function(req,res){
     
-    Complaint.find({matric_no:req.user.matric_no}).exec(function(err,complaint){
+    Complaint.find({user_id:req.user._id}).exec(function(err,complaint){
         res.render('complaintHistory',{
             complaints:complaint,
             title:'Compalaint History'

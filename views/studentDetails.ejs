@@ -1,0 +1,33 @@
+<% include layout/header %>
+<% include layout/sidebar %>    
+<div class="page-header card">
+    <div class="row align-items-end">
+    
+    </div>
+</div>
+    
+<div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Page-body start -->
+            <div class="page-body">
+                <!-- DOM/Jquery table start -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Student details</h5>
+                        <span>User Details</span>
+                    </div>
+                    <div class="card-block">
+                        <p><strong>Name </strong> : <%=userdetails.username%></p><br>
+                        <p><strong>Matric Number</strong> : <%=userdetails.matric_no%></p><br>
+                        <p><strong>Email</strong> : <%=userdetails.email%></p><br>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% include layout/footer %>
+    

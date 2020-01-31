@@ -84,13 +84,8 @@ router.post('/register', function(req,res){
    
 });
 
-router.post('/login', passport.authenticate('local',{failureRedirect:'/', failureFlash: 'Wrong Matric or Password',session:true}),function(req,res){
+router.post('/login', passport.authenticate('student-rule',{failureRedirect:'/', failureFlash: 'Wrong Matric or Password',session:true}),function(req,res){
   
-    // User.findOne({matric_no:req.body.matric_no}).exec(function(err,user){
-
-    // })
-    
-
     res.redirect('/dashboard');
 });
 
@@ -104,16 +99,16 @@ passport.deserializeUser(function(id, done) {
     });
 });
   
-passport.use(new LocalStrategy(
+passport.use('student-rule',new LocalStrategy(
     {
       usernameField: 'matric_no',
       passwordField: 'password'
     },
     function(matric_no, password, done) {
-        User.findOne({ matric_no: matric_no }, function(err, user) {
+        User.findOne({ matric_no:matric_no }, function(err, user) {
             if (err) { return done(err); }
             if (!user) {
-                return done(null, false, { message: 'Incorrect Matric Number' });
+                return done(null, false, { message: 'Invalid Email' });
             }
             bcrypt.compare(password, user.password, function(err, isMatch) {
                 if (err) { return done(err); }
@@ -127,6 +122,7 @@ passport.use(new LocalStrategy(
         });
     }
 ));
+
 router.get('/logout', function(req,res){
     req.logout();
     req.flash('success', 'You are now Logged Out');
