@@ -63,9 +63,16 @@
                         <a href="index.html">
                             <!-- <img class="img-fluid" src="files/assets/images/logo.png" alt="Theme-Logo" /> -->
                             <h3>HELPDESK</h3>
+                            <% if(locals.user.roleID==1) {%>
+
+                                <span><%=locals.user.matric_no%></span>
+                                <%}else{%>
+                                    <span><%=locals.user.email%></span>
+                                    <%}%>
                         </a>
                         <a class="mobile-menu" id="mobile-collapse" href="#!">
                             <i class="feather icon-menu icon-toggle-right"></i>
+
                         </a>
                         <a class="mobile-options waves-effect waves-light">
                             <i class="feather icon-more-horizontal"></i>
